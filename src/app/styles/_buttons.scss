@@ -1,0 +1,17 @@
+.btn {
+  @apply flex items-center px-10 py-4 text-white shadow-md text-lg font-normal min-w-60 uppercase justify-center hover:bg-gray-700 hover:text-white bg-primaryBg;
+
+  &.btn-outlined {
+    @apply border hover:bg-gray-700 hover:border-gray-700;
+    border-color: rgba(255, 255, 255, 0.5);
+    background-color: theme("colors.primaryBg.hover");
+  }
+
+  &.btn-secondary {
+    @apply bg-white text-black;
+  }
+
+  &:disabled {
+    @apply pointer-events-none cursor-not-allowed bg-disabled text-background;
+  }
+}
