@@ -1,6 +1,7 @@
 'use client';
 
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./styles/styles.scss";
 
 const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Proveedor de React Query */}
         <QueryClientProvider client={queryClient}>
           {children}
+          <SpeedInsights/>
         </QueryClientProvider>
       </body>
     </html>
