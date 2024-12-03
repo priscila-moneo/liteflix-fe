@@ -9,8 +9,8 @@ interface MoviesLoaderProps {
 
 export const MoviesLoader: React.FC<MoviesLoaderProps> = ({
   itemCount = 4,
-  width = 200,
-  height = 75,
+  width = 260,
+  height = 150,
 }) => (
   <motion.div
     className="w-full flex flex-col space-y-4 animate-pulse"
