@@ -13,7 +13,7 @@ interface Props {
 const fallbackImage = "/assets/images/fallback-image.jpg";
 
 const imageBaseUrl = (isPopular: boolean) =>
-  isPopular ?  "https://image.tmdb.org/t/p/w500" : '';
+  isPopular ?  "https://image.tmdb.org/t/p/w780" : '';
 
 const cardVariants = {
   hover: { scale: 1.03, transition: { duration: 0.3 } },
