@@ -59,27 +59,26 @@ const AddMovieModal = () => {
     e: React.ChangeEvent<HTMLInputElement> | React.DragEvent
   ) => {
     let file: File | null = null;
-
+  
     if (e.target && "files" in e.target) {
       file = (e.target as HTMLInputElement).files?.[0] || null;
     } else if ("dataTransfer" in e && e.dataTransfer?.files) {
       file = e.dataTransfer.files[0];
     }
-
+  
     if (file && validateImage(file)) {
       setUploading(true);
       setUploadProgress(0);
       setUploadFile(file);
-      setNewMovie({ ...newMovie, backdrop_path: file.name });
       uploadImage(file);
     } else {
       alert("Por favor, sube una imagen válida.");
     }
-
+  
     if ("preventDefault" in e) {
       e.preventDefault();
     }
-  };
+  };  
 
   const resetForm = () => {
     setNewMovie({
@@ -130,26 +129,36 @@ const AddMovieModal = () => {
     newMovie.backdrop_path &&
     uploadProgress === 100;
 
-  const uploadImage = async (file: File) => {
-    try {
-      const formData = new FormData();
-      formData.append("image", file);
-
-      const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/movies/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
-        setUploadProgress(100);
-        setUploadError(false);
+    const uploadImage = async (file: File) => {
+      try {
+        const formData = new FormData();
+        formData.append("image", file);
+    
+        const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/movies/upload", {
+          method: "POST",
+          body: formData,
+        });
+    
+        if (response.ok) {
+          const data = await response.json();
+          const imageUrl = data.url;
+    
+          setNewMovie((prevMovie) => ({
+            ...prevMovie,
+            backdrop_path: imageUrl,
+          }));
+    
+          setUploadProgress(100);
+          setUploadError(false);
+        } else {
+          throw new Error("Error al subir la imagen");
+        }
+      } catch (error) {
+        console.error("Error al subir la imagen:", error);
+        setUploadError(true);
+        setUploading(false);
       }
-    } catch (error) {
-      console.error("Error al subir la imagen:", error);
-      setUploadError(true);
-      setUploading(true);
-    }
-  };
+    };
 
   return (
     <>
