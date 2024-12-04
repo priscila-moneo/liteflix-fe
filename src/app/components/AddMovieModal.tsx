@@ -281,8 +281,8 @@ const AddMovieModal = () => {
                         >
                           <PiPaperclipLight size={20} className="mr-2" /> Agrega
                           un archivo{" "}
-                          <span className="font-normal hidden lg:inline-flex">
-                            o arrástralo y soltalo aquí
+                          <span className="font-normal hidden lg:inline-flex ml-2">
+                            o arrastralo y soltalo aqui
                           </span>
                         </label>
                         <input
@@ -299,7 +299,7 @@ const AddMovieModal = () => {
                     <div className="flex flex-col items-center w-full space-y-8">
                       <input
                         type="text"
-                        placeholder="Título"
+                        placeholder="Titulo"
                         className="w-60 border-0 bg-transparent text-center text-white border-b-2 py-2 px-3 outline-none tracking-wider border-gray-500 placeholder:text-white uppercase"
                         value={newMovie.title}
                         onChange={(e) =>
@@ -308,7 +308,7 @@ const AddMovieModal = () => {
                       />
                       <input
                         type="number"
-                        placeholder="Calificación"
+                        placeholder="Calificacion"
                         className="w-60 border-0 bg-transparent text-center text-white border-b-2 py-2 px-3 outline-none tracking-wider border-gray-500 placeholder:text-white uppercase"
                         value={newMovie.vote_average}
                         max="10"
@@ -322,7 +322,7 @@ const AddMovieModal = () => {
                       />
                       <input
                         type="number"
-                        placeholder="Año de lanzamiento"
+                        placeholder="Lanzamiento"
                         className="w-60 border-0 bg-transparent text-center text-white border-b-2 py-2 px-3 outline-none tracking-wider border-gray-500 placeholder:text-white uppercase"
                         value={newMovie.release_date}
                         onChange={(e) =>
@@ -341,7 +341,7 @@ const AddMovieModal = () => {
                         className="btn btn-secondary"
                         disabled={!isFormValid}
                       >
-                        Subir Película
+                        Subir Pelicula
                       </button>
                       <button
                         onClick={closeModal}

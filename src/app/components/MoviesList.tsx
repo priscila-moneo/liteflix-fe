@@ -14,7 +14,7 @@ const MoviesList: React.FC<MoviesListProps> = ({ category }) => {
     category === "popular" ? usePopularMovies() : useMyMovies();
 
   if (isLoading) {
-    return <div className="flex justify-center items-center"><MoviesLoader /></div>;
+    return <div className="flex justify-center w-full items-center"><MoviesLoader /></div>;
   }
 
   if (isError) {
