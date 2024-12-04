@@ -7,11 +7,20 @@ const EXTERNAL_BASE_URL = 'https://api.themoviedb.org/3';
 const INTERNAL_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const fetchFeaturedMovie = async (): Promise<Movie | null> => {
-  const response = await axios.get(`${EXTERNAL_BASE_URL}/movie/now_playing?api_key=${API_KEY}`);
-  const movies = response.data.results;
-  const movie = movies[Math.floor(Math.random() * movies.length)];
-  return movie ? { ...movie, backdrop_path: movie.backdrop_path } : null;
+  try {
+    const response = await axios.get(`${EXTERNAL_BASE_URL}/movie/now_playing?api_key=${API_KEY}`);
+    const movies = response.data.results;
+    if (movies.length === 0) {
+      return null;
+    }
+    const movie = movies[Math.floor(Math.random() * movies.length)];
+    return movie ? { ...movie, backdrop_path: movie.backdrop_path } : null;
+  } catch (error) {
+    console.error('Error al obtener la película destacada:', error);
+    return null;
+  }
 };
+
 
 export const fetchPopularMovies = async (): Promise<Movie[]> => {
   const response = await axios.get(`${EXTERNAL_BASE_URL}/movie/popular?api_key=${API_KEY}`);
@@ -23,7 +32,9 @@ export const fetchPopularMovies = async (): Promise<Movie[]> => {
 };
 
 export const fetchMyMovies = async () => {
-  const response = await axios.get(`${INTERNAL_BASE_URL}/movies`);
+  const response = await axios.get(`${INTERNAL_BASE_URL}/movies`, { headers: {
+    'Content-Type': 'application/json',
+  }});
   return response.data;
 };
 

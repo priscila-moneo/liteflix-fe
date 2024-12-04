@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useMovieStore } from "../../store/movieStore";
-import { useFeaturedMovie } from "../services/movieApi";
+import { useFeaturedMovie } from "../services/movieApi.service";
 import { motion } from "framer-motion";
 import { FeaturedMovieLoader } from "./FeaturedMovieLoader";
 import { PiPlay, PiPlus } from "react-icons/pi";

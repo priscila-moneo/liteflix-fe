@@ -3,7 +3,7 @@
 import React, { useState, Suspense } from "react";
 import { MovieCategory } from "../../types/movieCategory";
 import MovieCategorySelector from "./MovieCategorySelector";
-import { MoviesLoader } from "./MoviesLoader";
+import { MoviesLoader } from "./MoviesListLoader";
 import MoviesList from "./MoviesList";
 
 const Movies: React.FC = () => {
@@ -20,7 +20,7 @@ const Movies: React.FC = () => {
       />
 
       {/* Contenedor de películas */}
-      <div className="flex flex-col items-center justify-start space-y-4 h-fit lg:h-[calc(100vh-240px)] lg:max-h-full lg:overflow-y-auto p-3 lg:p-1">
+      <div className="flex flex-col items-center justify-start space-y-4 h-fit lg:h-[calc(100vh-240px)] lg:max-h-full lg:overflow-y-auto p-6 lg:p-1">
         <Suspense fallback={<MoviesLoader />}>
           <MoviesList category={dropdownSelection === MovieCategory.PopularMovies ? "popular" : "myMovies"} />
         </Suspense>

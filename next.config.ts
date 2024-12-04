@@ -7,15 +7,15 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "image.tmdb.org",
-        pathname: "/t/p/**",
       },
       {
         protocol: 'http',
         hostname: 'localhost',
-        port: '3001', 
+        port: '3001',
         pathname: '/uploads/**',
       },
     ],
-  }
+  },
 }
+
 export default nextConfig;

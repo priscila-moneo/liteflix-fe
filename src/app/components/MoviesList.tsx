@@ -1,9 +1,9 @@
 import React from "react";
-import { usePopularMovies, useMyMovies } from "../services/movieApi";
+import { usePopularMovies, useMyMovies } from "../services/movieApi.service";
 import { MovieCard } from "./MovieCard";
 import { motion } from "framer-motion";
 import { Movie } from "@/types/movie";
-import MoviesLoader from "./MoviesLoader";
+import MoviesLoader from "./MoviesListLoader";
 
 interface MoviesListProps {
   category: "popular" | "myMovies";

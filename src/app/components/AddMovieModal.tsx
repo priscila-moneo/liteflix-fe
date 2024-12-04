@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import { addMovie } from "../services/movieApi";
+import { addMovie } from "../services/movieApi.service";
 import { GrAddCircle } from "react-icons/gr";
 import { AiOutlineClose } from "react-icons/ai";
 import { PiPaperclipLight, PiPlus } from "react-icons/pi";
@@ -135,7 +135,7 @@ const AddMovieModal = () => {
       const formData = new FormData();
       formData.append("image", file);
 
-      const response = await fetch("http://localhost:3001/movies/upload", {
+      const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/movies/upload", {
         method: "POST",
         body: formData,
       });

@@ -28,10 +28,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Liteflix - Watch Movies and TV Shows" />
 
-        {/* Favicons */}
+        {/* Favicon */}
         <link rel="icon" href="/assets/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
         {/* Título de la página */}
         <title>Liteflix - Watch Movies and TV Shows</title>
