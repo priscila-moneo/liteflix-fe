@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { FeaturedMovieLoader } from "./FeaturedMovieLoader";
 import { PiPlay, PiPlus } from "react-icons/pi";
 import { Movie } from "@/types/movie";
+import Head from "next/head";
 
 const FeaturedMovie = () => {
   const setFeaturedMovie = useMovieStore(
@@ -18,21 +19,21 @@ const FeaturedMovie = () => {
   useEffect(() => {
     if (data) {
       setFeaturedMovie(data);
-      const imgUrl = `https://image.tmdb.org/t/p/w1280${data.backdrop_path || data.poster_path}`;
-      const link = document.createElement("link");
-      link.rel = "preload";
-      link.href = imgUrl;
-      link.as = "image";
-      document.head.appendChild(link);
-
-      return () => {
-        document.head.removeChild(link);
-      };
     }
   }, [data, setFeaturedMovie]);
 
   return (
     <div className="relative lg:absolute w-full h-dvh lg:h-full flex flex-col justify-end">
+      <Head>
+        {data?.backdrop_path && (
+          <link
+            rel="preload"
+            href={`https://image.tmdb.org/t/p/w1280${data.backdrop_path}`}
+            as="image"
+            type="image/jpg"
+          />
+        )}
+      </Head>
       {isLoading ? (
         <FeaturedMovieLoader />
       ) : (
@@ -41,6 +42,7 @@ const FeaturedMovie = () => {
             <motion.img
               className="object-cover w-full h-full absolute top-0 left-0 z-0"
               src={`https://image.tmdb.org/t/p/w1280${data.backdrop_path || data.poster_path}`}
+              fetchPriority="high"
               alt={data.title}
               initial={{ opacity: 1, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
