@@ -47,9 +47,9 @@ const FeaturedMovie = () => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
             >
-              <h6 className="flex items-center justify-center lg:justify-start text-md sm:text-2xl">
+              <h2 className="flex items-center justify-center lg:justify-start text-md sm:text-2xl">
                 <span className="font-thin mr-2">Original de </span> LITEFLIX
-              </h6>
+              </h2>
               <h3 className="flex items-center justify-center text-center lg:justify-start tracking-[16px] text-accent text-6xl md:text-9xl font-bold w-full lg:w-3/4 break-words">
                 {data.title}
               </h3>

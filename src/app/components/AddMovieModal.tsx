@@ -167,11 +167,12 @@ const AddMovieModal = () => {
         <button
           className="flex items-center justify-center text-white font-medium hover:underline focus:outline-none uppercase"
           onClick={() => setShowModal(true)}
+          aria-label="Agregar Película"
         >
           <div className="hidden lg:flex items-center">
             <PiPlus className="mr-2" /> Agregar Película
           </div>
-          <GrAddCircle size={32} className="flex lg:hidden" />
+          <GrAddCircle size={32} className="flex lg:hidden" aria-label="Agregar Película"/>
         </button>
       </div>
 
