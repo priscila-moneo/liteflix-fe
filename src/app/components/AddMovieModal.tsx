@@ -305,32 +305,37 @@ const AddMovieModal = () => {
                         onChange={(e) =>
                           setNewMovie({ ...newMovie, title: e.target.value })
                         }
+                        required
                       />
                       <input
                         type="number"
                         placeholder="Calificacion"
                         className="w-60 border-0 bg-transparent text-center text-white border-b-2 py-2 px-3 outline-none tracking-wider border-gray-500 placeholder:text-white uppercase"
                         value={newMovie.vote_average}
-                        max="10"
                         min="1"
+                        max="10"
                         onChange={(e) =>
                           setNewMovie({
                             ...newMovie,
                             vote_average: e.target.value,
                           })
                         }
+                        required
                       />
                       <input
                         type="number"
                         placeholder="Lanzamiento"
                         className="w-60 border-0 bg-transparent text-center text-white border-b-2 py-2 px-3 outline-none tracking-wider border-gray-500 placeholder:text-white uppercase"
                         value={newMovie.release_date}
+                        min="1900"
+                        max={new Date().getFullYear()}
                         onChange={(e) =>
                           setNewMovie({
                             ...newMovie,
                             release_date: e.target.value,
                           })
                         }
+                        required
                       />
                     </div>
 
