@@ -15,6 +15,9 @@ const fallbackImage = "/assets/images/fallback-image.jpg";
 const imageBaseUrl = (isPopular: boolean) =>
   isPopular ? "https://image.tmdb.org/t/p/w780" : "";
 
+const imageBaseUrlMobile = (isPopular: boolean) =>
+  isPopular ? "https://image.tmdb.org/t/p/w500" : "";
+
 const cardVariants = {
   hover: { scale: 1.03, transition: { duration: 0.3 } },
 };
@@ -23,6 +26,8 @@ export const MovieCard: React.FC<Props> = ({ movie, isPopular }) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   const handleImageLoad = () => setIsImageLoaded(true);
+
+  const getTitleLength = () => (window.innerWidth < 1024 ? 30 : 20);
 
   return (
     <motion.div
@@ -40,13 +45,14 @@ export const MovieCard: React.FC<Props> = ({ movie, isPopular }) => {
           className={`absolute inset-0 w-full bg-gray-300 rounded-lg transition-opacity duration-500 ${isImageLoaded ? "opacity-0" : "opacity-100"}`}
         />
         <Image
-          src={`${imageBaseUrl(isPopular)}${movie.backdrop_path || movie.poster_path}`}
+          src={`${window.innerWidth < 1024 ? imageBaseUrlMobile(isPopular) : imageBaseUrl(isPopular)}${movie.backdrop_path || movie.poster_path}`}
           alt={`Imagen de la película ${movie.title}`}
           layout="fill"
           objectFit="cover"
           className="rounded-lg transition-opacity duration-500"
           onLoadingComplete={handleImageLoad}
           onError={(e) => (e.currentTarget.src = fallbackImage)}
+          sizes="(max-width: 1024px) 500px, 780px"
         />
         
         {/* Play */}
@@ -63,8 +69,8 @@ export const MovieCard: React.FC<Props> = ({ movie, isPopular }) => {
               className="hidden mr-3 group-hover:left-0 group-hover:flex size-[45px] lg:size-[20px]"
             />
             <h4 className="text-2xl md:text-4xl font-light text-center lg:text-base truncate">
-              {movie.title.length > (window.innerWidth < 1024 ? 30 : 20) 
-                ? `${movie.title.slice(0, window.innerWidth < 1024 ? 30 : 20)}...` 
+              {movie.title.length > getTitleLength()
+                ? `${movie.title.slice(0, getTitleLength())}...`
                 : movie.title}
             </h4>
           </div>

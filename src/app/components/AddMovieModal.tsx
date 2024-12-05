@@ -282,7 +282,7 @@ const AddMovieModal = () => {
                           <PiPaperclipLight size={20} className="mr-2" /> Agrega
                           un archivo{" "}
                           <span className="font-normal hidden lg:inline-flex ml-2">
-                            o arrastralo y soltalo aqui
+                            o arrastralo y soltalo aquí
                           </span>
                         </label>
                         <input
