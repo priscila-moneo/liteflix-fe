@@ -91,3 +91,10 @@ Además, la integración continua está configurada para ejecutarse automáticam
 
 ## Backend
 El backend de esta aplición está disponible en un repositorio separado. Puedes acceder al código del backend [aquí](https://github.com/priscila-moneo/liteflix-be).
+
+## PageSpeed Insights
+
+![image](https://github.com/user-attachments/assets/163b6721-645e-47e6-8cd1-3a1c1f0a5b16)
+![image](https://github.com/user-attachments/assets/e9f9c0ea-1509-4fec-a0d7-0e14111d1982)
+
+
