@@ -50,7 +50,7 @@ const FeaturedMovie = () => {
               <h6 className="flex items-center justify-center lg:justify-start text-md sm:text-2xl">
                 <span className="font-thin mr-2">Original de </span> LITEFLIX
               </h6>
-              <h3 className="flex items-center justify-center lg:justify-start tracking-[16px] text-accent text-6xl md:text-9xl font-bold w-full lg:w-3/4 break-words">
+              <h3 className="flex items-center justify-center text-center lg:justify-start tracking-[16px] text-accent text-6xl md:text-9xl font-bold w-full lg:w-3/4 break-words">
                 {data.title}
               </h3>
               <div className="mt-4 flex space-y-4 lg:space-x-4 lg:space-y-0 flex-col lg:flex-row pb-5 lg:pb-0">
