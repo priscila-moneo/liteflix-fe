@@ -21,7 +21,7 @@ export const MoviesLoader: React.FC<MoviesLoaderProps> = ({
     {Array.from({ length: itemCount }).map((_, index) => (
       <div
         key={index}
-        className="w-full lg:w-64 h-80 lg:h-36 bg-gray-300 rounded-lg"
+        className="w-full lg:w-64 h-[25vh] lg:h-36 bg-gray-300 rounded-lg"
       />
     ))}
   </motion.div>

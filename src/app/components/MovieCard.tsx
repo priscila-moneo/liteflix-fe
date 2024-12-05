@@ -35,7 +35,7 @@ export const MovieCard: React.FC<Props> = ({ movie, isPopular }) => {
         className={`relative w-full h-0 pb-[33.33%] rounded-lg transition-opacity duration-500 ${isImageLoaded ? "opacity-100" : "opacity-0"}`}
         style={{ position: 'relative', paddingBottom: '56.25%' }}
       >
-        {/* Fallback background */}
+        {/* Imagen */}
         <div
           className={`absolute inset-0 w-full bg-gray-300 rounded-lg transition-opacity duration-500 ${isImageLoaded ? "opacity-0" : "opacity-100"}`}
         />
@@ -49,14 +49,14 @@ export const MovieCard: React.FC<Props> = ({ movie, isPopular }) => {
           onError={(e) => (e.currentTarget.src = fallbackImage)}
         />
         
-        {/* Play button */}
+        {/* Play */}
         <div className="absolute inset-0 flex rounded-lg items-center justify-center group-hover:justify-start bg-black/50 opacity-70 transition-opacity duration-300">
           <PiPlayCircleDuotone
             className="rounded-full transition-all duration-300 group-hover:text-xl group-hover:left-0 group-hover:hidden size-[45px] md:size-[90px] lg:size-[45px]"
           />
         </div>
 
-        {/* Movie Info */}
+        {/* Info Película */}
         <div className="absolute p-3 bottom-0 w-full text-white opacity-100 transition-opacity duration-300 flex flex-col items-center group-hover:items-start group-hover:opacity-100">
           <div className="flex flex-row items-center mb-5 lg:mb-0">
             <PiPlayCircle
@@ -67,13 +67,13 @@ export const MovieCard: React.FC<Props> = ({ movie, isPopular }) => {
             </h4>
           </div>
           
-          {/* Rating and Year */}
+          {/* Calificación y Año de lanzamiento */}
           <div className="flex-row text-2xl lg:text-xl justify-between w-full items-center mt-2 hidden group-hover:flex opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="flex items-center space-x-1">
               <FaStar className="text-accent" />
               <span>{isNaN(movie.vote_average) ? 0 : movie.vote_average}</span>
             </div>
-            <span>{movie.release_date ? new Date(movie.release_date).getFullYear() : 'No Date'}</span>
+            <span>{movie.release_date ? new Date(movie.release_date).getFullYear() : '-'}</span>
           </div>
         </div>
       </div>
