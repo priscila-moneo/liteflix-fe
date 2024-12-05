@@ -1,13 +1,17 @@
 
-# Liteflix-fe
+# Liteflix Frontend
 
 Liteflix-fe es una aplicación web desarrollada con Next.js, React y Tailwind CSS. El objetivo principal del proyecto es proporcionar una plataforma sencilla para gestionar películas, con funcionalidades como agregar y visualizar películas en una interfaz amigable.
+
+Puede verse en el siguiente link: http://[https://liteflix-fe.vercel.app/](https://liteflix-fe.vercel.app/)
 
 ## Índice
 
 - [Características](#características)
 - [Tecnologías utilizadas](#tecnologías-utilizadas)
 - [Instalación](#instalación)
+- [Despliegue y CI/CD](#despliegue-y-cicd)
+- [Backend](#backend)
 
 ## Características
 
@@ -63,6 +67,13 @@ Liteflix-fe es una aplicación web desarrollada con Next.js, React y Tailwind CS
    npm run dev
 
 Esto iniciará la aplicación en http://localhost:3000.
+
+
+## Despliegue y CI/CD
+
+Este frontend está desplegado en **Vercel** para facilitar su acceso en producción. Puedes acceder a la aplicación en la siguiente URL:
+
+Además, la integración continua está configurada para ejecutarse automáticamente cada vez que se realiza un **merge** en la rama `main` en GitHub.
 
 
 ## Backend
