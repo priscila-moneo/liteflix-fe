@@ -299,7 +299,7 @@ const AddMovieModal = () => {
                     <div className="flex flex-col items-center w-full space-y-8">
                       <input
                         type="text"
-                        placeholder="Titulo"
+                        placeholder="Título"
                         className="w-60 border-0 bg-transparent text-center text-white border-b-2 py-2 px-3 outline-none tracking-wider border-gray-500 placeholder:text-white uppercase"
                         value={newMovie.title}
                         onChange={(e) =>

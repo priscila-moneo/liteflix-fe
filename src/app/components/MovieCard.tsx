@@ -62,8 +62,8 @@ export const MovieCard: React.FC<Props> = ({ movie, isPopular }) => {
             <PiPlayCircle
               className="hidden mr-3 group-hover:left-0 group-hover:flex size-[45px] lg:size-[20px]"
             />
-            <h4 className="text-2xl md:text-4xl font-light text-center lg:text-base">
-              {movie.title || 'Título no disponible'}
+            <h4 className="text-2xl md:text-4xl font-light text-center lg:text-base truncate">
+              {movie.title.length > 20 ? `${movie.title.slice(0, 20)}...` : movie.title}
             </h4>
           </div>
           
