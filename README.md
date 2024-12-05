@@ -5,6 +5,19 @@ Liteflix-fe es una aplicación web desarrollada con Next.js, React y Tailwind CS
 
 Puede verse en el siguiente link: http://[https://liteflix-fe.vercel.app/](https://liteflix-fe.vercel.app/)
 
+### Pantalla principal
+![image](https://github.com/user-attachments/assets/df0b6071-a99a-44d8-831b-5cec83b31d34)
+
+### Agregar Nueva pelicula
+![image](https://github.com/user-attachments/assets/1812b5ef-4d4f-4dc5-8d9b-1e35e60b2b08)
+
+### Mis Peliculas
+![image](https://github.com/user-attachments/assets/201c1001-2acc-464c-bffc-8ea63dc6557f)
+
+### Placeholder de carga
+![image](https://github.com/user-attachments/assets/80d09fb6-a68c-415e-b3fa-30ce5bc29db2)
+
+
 ## Índice
 
 - [Características](#características)
