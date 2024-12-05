@@ -50,7 +50,7 @@ export const MovieCard: React.FC<Props> = ({ movie, isPopular }) => {
         />
         
         {/* Play button */}
-        <div className="absolute inset-0 flex items-center justify-center group-hover:justify-start bg-black/50 opacity-70 transition-opacity duration-300">
+        <div className="absolute inset-0 flex rounded-lg items-center justify-center group-hover:justify-start bg-black/50 opacity-70 transition-opacity duration-300">
           <PiPlayCircleDuotone
             className="rounded-full transition-all duration-300 group-hover:text-xl group-hover:left-0 group-hover:hidden size-[45px] md:size-[90px] lg:size-[45px]"
           />
