@@ -24,7 +24,7 @@ const MovieCategorySelector: React.FC<MovieCategorySelectorProps> = ({
         id="movie-category"
         value={dropdownSelection}
         onChange={(e) => setDropdownSelection(e.target.value as MovieCategory)}
-        className="bg-transparent border-0 p-0 pl-0 text-white focus:outline-none uppercase cursor-pointer"
+        className="cursor-pointer border-0 bg-transparent p-0 uppercase text-white focus:outline-none"
       >
         {dropdownOptions.map(({ label, value }) => (
           <option key={value} value={value}>

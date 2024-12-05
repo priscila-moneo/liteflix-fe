@@ -32,20 +32,28 @@ export const MovieCard: React.FC<Props> = ({ movie, isPopular }) => {
   return (
     <motion.div
       key={movie.id}
-      className="relative w-full flex flex-col items-center max-h-30 cursor-pointer bg-gray-800/50 rounded-lg hover:bg-gray-700 group text-center hover:text-left"
+      className="group relative flex w-full cursor-pointer flex-col items-center rounded-lg bg-gray-800/50 text-center hover:bg-gray-700 hover:text-left"
       whileHover="hover"
       variants={cardVariants}
     >
       <div
-        className={`relative w-full h-0 pb-[33.33%] rounded-lg transition-opacity duration-500 ${isImageLoaded ? "opacity-100" : "opacity-0"}`}
-        style={{ position: 'relative', paddingBottom: '56.25%' }}
+        className={`relative h-0 w-full rounded-lg pb-[33.33%] transition-opacity duration-500 ${
+          isImageLoaded ? "opacity-100" : "opacity-0"
+        }`}
+        style={{ position: "relative", paddingBottom: "56.25%" }}
       >
         {/* Imagen */}
         <div
-          className={`absolute inset-0 w-full bg-gray-300 rounded-lg transition-opacity duration-500 ${isImageLoaded ? "opacity-0" : "opacity-100"}`}
+          className={`absolute inset-0 w-full rounded-lg bg-gray-300 transition-opacity duration-500 ${
+            isImageLoaded ? "opacity-0" : "opacity-100"
+          }`}
         />
         <Image
-          src={`${window.innerWidth < 1024 ? imageBaseUrlMobile(isPopular) : imageBaseUrl(isPopular)}${movie.backdrop_path || movie.poster_path}`}
+          src={`${
+            window.innerWidth < 1024
+              ? imageBaseUrlMobile(isPopular)
+              : imageBaseUrl(isPopular)
+          }${movie.backdrop_path || movie.poster_path}`}
           alt={`Imagen de la película ${movie.title}`}
           layout="fill"
           objectFit="cover"
@@ -54,34 +62,34 @@ export const MovieCard: React.FC<Props> = ({ movie, isPopular }) => {
           onError={(e) => (e.currentTarget.src = fallbackImage)}
           sizes="(max-width: 1024px) 500px, 780px"
         />
-        
+
         {/* Play */}
-        <div className="absolute inset-0 flex rounded-lg items-center justify-center group-hover:justify-start bg-black/50 opacity-70 transition-opacity duration-300">
-          <PiPlayCircleDuotone
-            className="rounded-full transition-all duration-300 group-hover:text-xl group-hover:left-0 group-hover:hidden size-[45px] md:size-[90px] lg:size-[45px]"
-          />
+        <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-black/50 opacity-70 transition-opacity duration-300 group-hover:justify-start">
+          <PiPlayCircleDuotone className="size-[45px] rounded-full transition-all duration-300 group-hover:left-0 group-hover:hidden group-hover:text-xl md:size-[90px] lg:size-[45px]" />
         </div>
 
         {/* Info Película */}
-        <div className="absolute p-3 bottom-0 w-full text-white opacity-100 transition-opacity duration-300 flex flex-col items-center group-hover:items-start group-hover:opacity-100">
-          <div className="flex flex-row items-center mb-5 lg:mb-0">
-            <PiPlayCircle
-              className="hidden mr-3 group-hover:left-0 group-hover:flex size-[45px] lg:size-[20px]"
-            />
-            <h4 className="text-2xl md:text-4xl font-light text-center lg:text-base truncate">
+        <div className="absolute bottom-0 flex w-full flex-col items-center p-3 text-white opacity-100 transition-opacity duration-300 group-hover:items-start group-hover:opacity-100">
+          <div className="mb-5 flex flex-row items-center lg:mb-0">
+            <PiPlayCircle className="mr-3 hidden size-[45px] group-hover:left-0 group-hover:flex lg:size-[20px]" />
+            <h4 className="truncate text-center text-2xl font-light md:text-4xl lg:text-base">
               {movie.title.length > getTitleLength()
                 ? `${movie.title.slice(0, getTitleLength())}...`
                 : movie.title}
             </h4>
           </div>
-          
+
           {/* Calificación y Año de lanzamiento */}
-          <div className="flex-row text-2xl lg:text-xl justify-between w-full items-center mt-2 hidden group-hover:flex opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="mt-2 hidden w-full flex-row items-center justify-between text-2xl opacity-0 transition-opacity duration-300 group-hover:flex group-hover:opacity-100 lg:text-xl">
             <div className="flex items-center space-x-1">
               <FaStar className="text-accent" />
               <span>{isNaN(movie.vote_average) ? 0 : movie.vote_average}</span>
             </div>
-            <span>{movie.release_date ? new Date(movie.release_date).getFullYear() : '-'}</span>
+            <span>
+              {movie.release_date
+                ? new Date(movie.release_date).getFullYear()
+                : "-"}
+            </span>
           </div>
         </div>
       </div>

@@ -7,55 +7,66 @@ import { motion } from "framer-motion";
 import { FeaturedMovieLoader } from "./FeaturedMovieLoader";
 import { PiPlay, PiPlus } from "react-icons/pi";
 import { Movie } from "@/types/movie";
+import Image from "next/image";
 
 const FeaturedMovie = () => {
   const setFeaturedMovie = useMovieStore(
     (state: { setFeaturedMovie: (movie: Movie) => void }) =>
       state.setFeaturedMovie
   );
-  const { data, isLoading } = useFeaturedMovie();
+  const { data: featuredMovie, isLoading } = useFeaturedMovie();
 
   useEffect(() => {
-    if (data) {
-      setFeaturedMovie(data);
+    if (featuredMovie) {
+      setFeaturedMovie(featuredMovie);
     }
-  }, [data, setFeaturedMovie]);
+  }, [featuredMovie, setFeaturedMovie]);
 
   return (
-    <div className="relative lg:absolute w-full h-dvh lg:h-full flex flex-col justify-end">
+    <div className="relative flex h-dvh w-full flex-col justify-end lg:absolute lg:h-full">
       {isLoading ? (
         <FeaturedMovieLoader />
       ) : (
-        data && (
+        featuredMovie && (
           <>
-            <motion.img
-              className="object-cover w-full h-full absolute top-0 left-0 z-0"
-              src={`
-                https://image.tmdb.org/t/p/w1280${data.backdrop_path  || data.poster_path}
-              `}
-              fetchPriority="high"
-              alt={data.title}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
-            />
-
-            <div className="hidden lg:flex absolute inset-0 bg-[#242424] opacity-50 z-10"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-[#242424] via-[rgba(36,36,36,0.5)] to-[rgba(36,36,36,0.5)] z-10 lg:hidden"></div>
-
+            {/* Imagen con animación */}
             <motion.div
-              className="relative text-white p-5 lg:p-16 z-20"
+              className="absolute inset-0 z-0"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1  }}
+              transition={{ duration: 1, ease: "easeInOut" }}
+            >
+              <Image
+                className="size-full object-cover"
+                src={`https://image.tmdb.org/t/p/w1280${
+                  featuredMovie.backdrop_path || featuredMovie.poster_path
+                }`}
+                alt={featuredMovie.title}
+                fill
+                priority
+                fetchPriority="high"
+                sizes="(max-width: 1024px) 100vw, 1280px"
+              />
+            </motion.div>
+
+            {/* Overlay para estética */}
+            <div className="absolute inset-0 z-10 hidden bg-[#242424]/50 lg:flex"></div>
+            <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#242424] via-[rgba(36,36,36,0.5)] to-[rgba(36,36,36,0.5)] lg:hidden"></div>
+
+            {/* Contenido principal */}
+            <motion.div
+              className="relative z-20 p-5 text-white lg:p-16"
               initial={{ y: 100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
             >
-              <h2 className="flex items-center justify-center lg:justify-start text-md sm:text-2xl">
-                <span className="font-thin mr-2">Original de </span> LITEFLIX
+              <h2 className="flex items-center justify-center text-base sm:text-2xl lg:justify-start">
+                <span className="mr-2 font-thin">Original de </span> LITEFLIX
               </h2>
-              <h3 className="flex items-center justify-center text-center lg:text-left lg:justify-start tracking-[16px] text-accent text-6xl md:text-9xl font-bold w-full lg:w-3/4 break-words">
-                {data.title}
+              <h3 className="text-accent flex w-full items-center justify-center break-words text-center text-6xl font-bold tracking-[16px] md:text-9xl lg:w-3/4 lg:justify-start lg:text-left">
+                {featuredMovie.title}
               </h3>
-              <div className="mt-4 flex space-y-4 lg:space-x-4 lg:space-y-0 flex-col lg:flex-row pb-5 lg:pb-0">
+              <div className="mt-4 flex flex-col space-y-4 pb-5 lg:flex-row lg:space-x-4 lg:space-y-0 lg:pb-0">
                 <motion.button
                   className="btn"
                   initial={{ opacity: 0 }}

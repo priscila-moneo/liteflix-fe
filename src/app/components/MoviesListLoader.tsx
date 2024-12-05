@@ -11,7 +11,7 @@ export const MoviesLoader: React.FC<MoviesLoaderProps> = ({
   itemCount = 4,
 }) => (
   <motion.div
-    className="w-full flex flex-col space-y-4 animate-pulse rounded-lg"
+    className="flex w-full animate-pulse flex-col space-y-4 rounded-lg"
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ duration: 1 }}
@@ -21,7 +21,7 @@ export const MoviesLoader: React.FC<MoviesLoaderProps> = ({
     {Array.from({ length: itemCount }).map((_, index) => (
       <div
         key={index}
-        className="w-full lg:w-64 h-[25vh] lg:h-36 bg-gray-300 rounded-lg"
+        className="h-[25vh] w-full rounded-lg bg-gray-300 lg:h-36 lg:w-64"
       />
     ))}
   </motion.div>

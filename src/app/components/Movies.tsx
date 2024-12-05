@@ -12,7 +12,7 @@ const Movies: React.FC = () => {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center w-full space-y-4 text-white rounded-lg mt-8 lg:mt-0 lg:pr-20 mb-5 lg:mb-0">
+    <div className="mb-5 mt-8 flex w-full flex-col items-center justify-center space-y-4 rounded-lg text-white lg:my-0 lg:pr-20">
       {/* Selector de categorías */}
       <MovieCategorySelector
         dropdownSelection={dropdownSelection}
@@ -20,7 +20,7 @@ const Movies: React.FC = () => {
       />
 
       {/* Contenedor de películas */}
-      <div className="flex flex-col w-full items-center justify-start space-y-4 h-fit lg:h-[calc(100vh-240px)] lg:max-h-full lg:overflow-y-auto p-6 lg:p-1">
+      <div className="flex h-fit w-full flex-col items-center justify-start space-y-4 p-6 lg:h-[calc(100vh-240px)] lg:max-h-full lg:overflow-y-auto lg:p-1">
         <Suspense fallback={<MoviesLoader />}>
           <MoviesList category={dropdownSelection} />
         </Suspense>

@@ -1,38 +1,47 @@
 import React from "react";
 import { MovieCategory } from "../../types/movieCategory";
-import { usePopularMovies, useMyMovies } from "../services/movieApi.service";
 import { MovieCard } from "./MovieCard";
 import { motion } from "framer-motion";
 import { Movie } from "@/types/movie";
 import MoviesLoader from "./MoviesListLoader";
+import { useMoviesByCategory } from "../hooks/useMoviesByCategoryHook";
 
 interface MoviesListProps {
   category: MovieCategory;
 }
 
 const MoviesList: React.FC<MoviesListProps> = ({ category }) => {
-  const { data, isLoading, isError } =
-    category === MovieCategory.PopularMovies ? usePopularMovies() : useMyMovies();
+  const { data, isLoading, isError } = useMoviesByCategory(category);
 
   if (isLoading) {
-    return <div className="flex justify-center w-full items-center"><MoviesLoader /></div>;
+    return (
+      <div className="flex w-full items-center justify-center">
+        <MoviesLoader />
+      </div>
+    );
   }
 
   if (isError) {
     return (
       <p className="text-red-500">
-        Error al cargar {category === MovieCategory.PopularMovies ? "Populares" : "Mis Películas"}.
+        Error al cargar{" "}
+        {category === MovieCategory.PopularMovies
+          ? MovieCategory.PopularMovies
+          : MovieCategory.MyMovies}
+        .
       </p>
     );
   }
-  const movies = category === MovieCategory.PopularMovies ? data?.slice(0, 4) : data;
+
+  const movies =
+    category === MovieCategory.PopularMovies ? data?.slice(0, 4) : data;
 
   return (
     <>
       {movies?.map((movie: Movie) => (
         <motion.div
           key={movie.id || movie.title}
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="w-full"

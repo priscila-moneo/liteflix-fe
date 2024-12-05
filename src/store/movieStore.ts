@@ -1,12 +1,12 @@
-import { create } from 'zustand';
-import { Movie } from '../types/movie'
+import { create } from "zustand";
+import { Movie } from "../types/movie";
 
 interface MovieStore {
-  featuredMovie: Movie | null
-  popularMovies: Movie[]
-  addMovie: (movie: Movie) => void
-  setFeaturedMovie: (movie: Movie) => void
-  setPopularMovies: (movies: Movie[]) => void
+  featuredMovie: Movie | null;
+  popularMovies: Movie[];
+  addMovie: (movie: Movie) => void;
+  setFeaturedMovie: (movie: Movie) => void;
+  setPopularMovies: (movies: Movie[]) => void;
 }
 
 export const useMovieStore = create<MovieStore>((set) => ({
@@ -14,7 +14,6 @@ export const useMovieStore = create<MovieStore>((set) => ({
   popularMovies: [],
   addMovie: (movie: Movie) =>
     set((state) => ({ popularMovies: [...state.popularMovies, movie] })),
-    setFeaturedMovie: (movie: Movie) => set({ featuredMovie: movie }),
-    setPopularMovies: (movies: Movie[]) => set({ popularMovies: movies }),
-}))
-
+  setFeaturedMovie: (movie: Movie) => set({ featuredMovie: movie }),
+  setPopularMovies: (movies: Movie[]) => set({ popularMovies: movies }),
+}));

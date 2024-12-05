@@ -28,18 +28,18 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen }) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full p-4 transition-all duration-300 ease-in-out z-50 ${
+      className={`fixed left-0 top-0 z-50 w-full p-4 transition-all duration-300 ease-in-out ${
         isScrolled
           ? "bg-gradient-to-b from-[#242424] to-transparent"
           : "bg-transparent"
       }`}
     >
-      <div className="flex justify-between items-center mx-auto px-4 lg:px-20">
+      <div className="mx-auto flex items-center justify-between px-4 lg:px-20">
         {/* Logo desktop */}
         <Logo className="hidden lg:flex" />
 
         {/* Contenido central */}
-        <div className="flex justify-between items-center w-full">
+        <div className="flex w-full items-center justify-between">
           <div className="flex items-center">
             {!isModalOpen && <AddMovieModal />}
           </div>
@@ -64,7 +64,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen }) => {
               </button>
               {/* Indicador de notificación */}
               <motion.div
-                className="absolute top-0 right-0 bg-green-500 text-xs text-white rounded-full w-4 h-4 flex items-center justify-center"
+                className="absolute right-0 top-0 flex size-4 items-center justify-center rounded-full bg-green-500 text-xs text-white"
                 initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ type: "spring", stiffness: 200 }}

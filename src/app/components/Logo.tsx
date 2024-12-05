@@ -6,10 +6,10 @@ export const Logo: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
 }) => {
   return (
     <h1
-      className={`font-thin text-3xl text-center ${className || ""}`}
+      className={`text-center text-3xl font-thin ${className || ""}`}
       {...props}
     >
-      <span className="font-bold text-accent">Lite</span>flix
+      <span className="text-accent font-bold">Lite</span>flix
     </h1>
   );
 };

@@ -1,0 +1,33 @@
+{
+    "extends": [
+      "next/core-web-vitals",
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:tailwindcss/recommended"
+    ],
+    "plugins": [
+      "@typescript-eslint",
+      "tailwindcss"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 2020,
+      "sourceType": "module",
+      "project": "./tsconfig.json"
+    },
+    "rules": {
+      "semi": ["error", "always"],
+      "quotes": ["error", "double"],
+      "no-console": "warn",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+      "tailwindcss/classnames-order": "warn",
+      "tailwindcss/no-custom-classname": "off"
+    },
+    "settings": {
+      "tailwindcss": {
+        "config": "./tailwind.config.js"
+      }
+    }
+  }
+  

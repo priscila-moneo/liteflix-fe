@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { QueryClient, QueryClientProvider } from "react-query";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./styles/styles.scss";
 
 const queryClient = new QueryClient();
