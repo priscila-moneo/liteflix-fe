@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import { FeaturedMovieLoader } from "./FeaturedMovieLoader";
 import { PiPlay, PiPlus } from "react-icons/pi";
 import { Movie } from "@/types/movie";
-import Head from "next/head";
 
 const FeaturedMovie = () => {
   const setFeaturedMovie = useMovieStore(
@@ -24,16 +23,6 @@ const FeaturedMovie = () => {
 
   return (
     <div className="relative lg:absolute w-full h-dvh lg:h-full flex flex-col justify-end">
-      <Head>
-        {data?.backdrop_path && (
-          <link
-            rel="preload"
-            href={`https://image.tmdb.org/t/p/w1280${data.backdrop_path}`}
-            as="image"
-            type="image/jpg"
-          />
-        )}
-      </Head>
       {isLoading ? (
         <FeaturedMovieLoader />
       ) : (
@@ -41,12 +30,14 @@ const FeaturedMovie = () => {
           <>
             <motion.img
               className="object-cover w-full h-full absolute top-0 left-0 z-0"
-              src={`https://image.tmdb.org/t/p/w1280${data.backdrop_path || data.poster_path}`}
+              src={`
+                https://image.tmdb.org/t/p/w1280${data.backdrop_path  || data.poster_path}
+              `}
               fetchPriority="high"
               alt={data.title}
-              initial={{ opacity: 1, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
             />
 
             <div className="hidden lg:flex absolute inset-0 bg-[#242424] opacity-50 z-10"></div>
@@ -61,7 +52,7 @@ const FeaturedMovie = () => {
               <h2 className="flex items-center justify-center lg:justify-start text-md sm:text-2xl">
                 <span className="font-thin mr-2">Original de </span> LITEFLIX
               </h2>
-              <h3 className="flex items-center justify-center text-center lg:justify-start tracking-[16px] text-accent text-6xl md:text-9xl font-bold w-full lg:w-3/4 break-words">
+              <h3 className="flex items-center justify-center text-center lg:text-left lg:justify-start tracking-[16px] text-accent text-6xl md:text-9xl font-bold w-full lg:w-3/4 break-words">
                 {data.title}
               </h3>
               <div className="mt-4 flex space-y-4 lg:space-x-4 lg:space-y-0 flex-col lg:flex-row pb-5 lg:pb-0">

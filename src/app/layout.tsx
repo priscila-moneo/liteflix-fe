@@ -16,23 +16,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="robots" content="index, follow" />
         <meta name="description" content="Liteflix - The best place to watch movies and TV shows online" />
         <meta name="keywords" content="movies, tv shows, watch online, streaming" />
-        <meta name="author" content="Liteflix" />
+        <meta name="author" content="Priscila Moneo" />
 
         {/* Open Graph (OG) Meta Tags */}
         <meta property="og:title" content="Liteflix - Watch Movies and TV Shows" />
         <meta property="og:description" content="Liteflix offers a great collection of movies and TV shows for your entertainment." />
-        <meta property="og:url" content="https://www.liteflix.com" />
+        <meta property="og:url" content="https://liteflix-fe.vercel.app/" />
         <meta property="og:type" content="website" />
-
-        {/* Twitter Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Liteflix - Watch Movies and TV Shows" />
 
         {/* Favicon */}
         <link rel="icon" href="/assets/favicon.ico" />
 
         {/* Título de la página */}
         <title>Liteflix - Watch Movies and TV Shows</title>
+
+        {/* Preconnect para optimizar imagenes */}
+        <link rel="preconnect" href="https://image.tmdb.org" />
+        <link rel="preconnect" href="https://api.themoviedb.org" />
       </head>
       <body className="min-h-screen">
         {/* Proveedor de React Query */}
