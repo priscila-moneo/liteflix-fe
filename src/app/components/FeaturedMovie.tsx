@@ -18,6 +18,16 @@ const FeaturedMovie = () => {
   useEffect(() => {
     if (data) {
       setFeaturedMovie(data);
+      const imgUrl = `https://image.tmdb.org/t/p/w1280${data.backdrop_path || data.poster_path}`;
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.href = imgUrl;
+      link.as = "image";
+      document.head.appendChild(link);
+
+      return () => {
+        document.head.removeChild(link);
+      };
     }
   }, [data, setFeaturedMovie]);
 
