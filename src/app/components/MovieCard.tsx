@@ -40,7 +40,7 @@ export const MovieCard: React.FC<Props> = ({ movie, isPopular }) => {
           className={`absolute inset-0 w-full bg-gray-300 rounded-lg transition-opacity duration-500 ${isImageLoaded ? "opacity-0" : "opacity-100"}`}
         />
         <Image
-          src={`${imageBaseUrl(isPopular)}${movie.backdrop_path}`}
+          src={`${imageBaseUrl(isPopular)}${movie.backdrop_path || movie.poster_path}`}
           alt={`Imagen de la película ${movie.title}`}
           layout="fill"
           objectFit="cover"
@@ -63,7 +63,9 @@ export const MovieCard: React.FC<Props> = ({ movie, isPopular }) => {
               className="hidden mr-3 group-hover:left-0 group-hover:flex size-[45px] lg:size-[20px]"
             />
             <h4 className="text-2xl md:text-4xl font-light text-center lg:text-base truncate">
-              {movie.title.length > 20 ? `${movie.title.slice(0, 20)}...` : movie.title}
+              {movie.title.length > (window.innerWidth < 1024 ? 40 : 20) 
+                ? `${movie.title.slice(0, window.innerWidth < 1024 ? 40 : 20)}...` 
+                : movie.title}
             </h4>
           </div>
           

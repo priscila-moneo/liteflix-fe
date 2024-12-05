@@ -30,7 +30,7 @@ const FeaturedMovie = () => {
           <>
             <motion.img
               className="object-cover w-full h-full absolute top-0 left-0 z-0"
-              src={`https://image.tmdb.org/t/p/w1280${data.backdrop_path}`}
+              src={`https://image.tmdb.org/t/p/w1280${data.backdrop_path || data.poster_path}`}
               alt={data.title}
               loading="lazy"
               initial={{ opacity: 1, scale: 0.8 }}

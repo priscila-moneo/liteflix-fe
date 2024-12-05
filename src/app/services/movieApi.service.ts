@@ -21,7 +21,6 @@ export const fetchFeaturedMovie = async (): Promise<Movie | null> => {
   }
 };
 
-
 export const fetchPopularMovies = async (): Promise<Movie[]> => {
   const response = await axios.get(`${EXTERNAL_BASE_URL}/movie/popular?api_key=${API_KEY}`);
   const movies = response.data.results;
@@ -52,11 +51,6 @@ export const uploadImage = async (file: File) => {
       'Content-Type': 'multipart/form-data',
     },
   });
-
-  if (!response.data) {
-    throw new Error('Error al subir la imagen');
-  }
-
   return response.data;
 };
 
@@ -73,12 +67,5 @@ export const useMyMovies = () => {
 };
 
 export const useUploadImage = () => {
-  return useMutation(uploadImage, {
-    onSuccess: (data) => {
-      console.log('Imagen subida con éxito:', data);
-    },
-    onError: (error: Error) => {
-      console.error('Error al subir la imagen:', error);
-    },
-  });
+  return useMutation(uploadImage);
 };
