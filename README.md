@@ -84,7 +84,7 @@ Esto iniciará la aplicación en http://localhost:3000.
 
 ## Despliegue y CI/CD
 
-Este frontend está desplegado en **Vercel** para facilitar su acceso en producción. Puedes acceder a la aplicación en la siguiente URL:
+Este frontend está desplegado en **Vercel** para facilitar su acceso en producción.
 
 Además, la integración continua está configurada para ejecutarse automáticamente cada vez que se realiza un **merge** en la rama `main` en GitHub.
 
