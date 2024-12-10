@@ -32,7 +32,7 @@ export const MovieCard: React.FC<Props> = ({ movie, isPopular }) => {
   return (
     <motion.div
       key={movie.id}
-      className="group relative flex w-full cursor-pointer flex-col items-center rounded-lg bg-gray-800/50 text-center hover:bg-gray-700 hover:text-left"
+      className="group relative flex w-full cursor-pointer flex-col items-center rounded-lg bg-gray-800/50 text-center hover:bg-gray-700 hover:text-left overflow-hidden"
       whileHover="hover"
       variants={cardVariants}
     >
@@ -44,8 +44,8 @@ export const MovieCard: React.FC<Props> = ({ movie, isPopular }) => {
       >
         {/* Imagen */}
         <div
-          className={`absolute inset-0 w-full rounded-lg bg-gray-300 transition-opacity duration-500 ${
-            isImageLoaded ? "opacity-0" : "opacity-100"
+          className={`absolute inset-0 w-full rounded-lg transition-opacity duration-500 ${
+            isImageLoaded ? "bg-gray-300/0" : "bg-gray-300"
           }`}
         />
         <Image
@@ -87,7 +87,9 @@ export const MovieCard: React.FC<Props> = ({ movie, isPopular }) => {
             </div>
             <span>
               {movie.release_date
-                ? new Date(movie.release_date).getFullYear()
+                ? movie.release_date.length === 4
+                  ? movie.release_date
+                  : new Date(movie.release_date).getFullYear()
                 : "-"}
             </span>
           </div>

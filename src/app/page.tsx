@@ -12,7 +12,7 @@ const Home = () => {
         <FeaturedMovie />
       </div>
 
-      <div className="z-40 mt-0 flex w-full flex-col justify-center lg:min-h-screen lg:w-[30rem] lg:pt-14">
+      <div className="z-40 mt-0 flex w-full flex-col justify-center lg:min-h-screen lg:w-[31rem] lg:pt-14">
         <Movies />
       </div>
     </div>

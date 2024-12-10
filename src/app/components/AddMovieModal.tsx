@@ -31,8 +31,10 @@ const AddMovieModal = () => {
       setUploadError(false);
       queryClient.invalidateQueries("myMovies");
     },
-    onError: () => {
-      setUploadError(true);
+    onError: (error: any) => {
+      const errorMessage =
+        error?.response?.data?.message || "No se pudo cargar la película";
+      setUploadError(errorMessage);
       setSuccessMessage(false);
     },
   });
@@ -124,15 +126,25 @@ const AddMovieModal = () => {
 
   const isFormValid =
     newMovie.title &&
+    newMovie.title.trim() !== "" &&
     newMovie.vote_average &&
     newMovie.release_date &&
     newMovie.backdrop_path &&
     uploadProgress === 100;
 
   const uploadImage = async (file: File) => {
+    setUploadError(false);
+    setUploading(true);
+
     try {
       const formData = new FormData();
       formData.append("image", file);
+
+      let simulatedProgress = 0;
+      const interval = setInterval(() => {
+        simulatedProgress = Math.min(simulatedProgress + 10, 90);
+        setUploadProgress(simulatedProgress);
+      }, 200);
 
       const response = await fetch(
         process.env.NEXT_PUBLIC_API_URL + "/movies/upload",
@@ -143,6 +155,7 @@ const AddMovieModal = () => {
       );
 
       if (response.ok) {
+        clearInterval(interval);
         const data = await response.json();
         const imageUrl = data.url;
 
@@ -152,14 +165,14 @@ const AddMovieModal = () => {
         }));
 
         setUploadProgress(100);
-        setUploadError(false);
       } else {
         throw new Error("Error al subir la imagen");
       }
     } catch (error) {
       setUploadError(true);
       setUploading(false);
-      throw error;
+      setUploadProgress(0);
+      console.error(error);
     }
   };
 
@@ -217,9 +230,7 @@ const AddMovieModal = () => {
                         {/* Mensaje de error */}
                         {uploadError && (
                           <div className="mb-2 text-start text-red-500">
-                            <strong>
-                              ¡ERROR! No se pudo cargar la película
-                            </strong>
+                            <strong>¡ERROR! {uploadError}</strong>
                           </div>
                         )}
 
@@ -228,7 +239,16 @@ const AddMovieModal = () => {
                           !uploadError &&
                           !successMessage && (
                             <div className="mb-2 text-start text-white">
-                              <strong>¡100% Cargado!</strong>
+                              <strong>¡100% CARGADO!</strong>
+                            </div>
+                          )}
+
+                        {uploadProgress !== 100 &&
+                        uploadProgress !== 0 &&
+                          !uploadError &&
+                          !successMessage && (
+                            <div className="mb-2 text-start text-white">
+                              <strong>CARGANDO {uploadProgress}%</strong>
                             </div>
                           )}
 
@@ -241,16 +261,13 @@ const AddMovieModal = () => {
                           ></div>
                         </div>
                         <div className="mt-2 flex justify-between">
-                          <div></div>
-                          {uploading &&
-                            !uploadError &&
-                            uploadProgress < 100 && (
+                          {uploading && (
                               <button
                                 type="button"
                                 onClick={cancelUpload}
                                 className="text-sm text-red-500"
                               >
-                                Cancelar
+                                CANCELAR
                               </button>
                             )}
                           {uploadError && (
@@ -259,7 +276,7 @@ const AddMovieModal = () => {
                               onClick={retryUpload}
                               className="text-sm text-yellow-500"
                             >
-                              Reintentar
+                              REINTENTAR
                             </button>
                           )}
                           {/* Mensaje de éxito cuando la carga ha finalizado */}
@@ -267,7 +284,7 @@ const AddMovieModal = () => {
                             !uploadError &&
                             !successMessage && (
                               <span className="text-sm font-semibold text-green-500">
-                                ¡Listo!
+                                ¡LISTO!
                               </span>
                             )}
                         </div>

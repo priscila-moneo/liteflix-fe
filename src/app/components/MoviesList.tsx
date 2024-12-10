@@ -40,7 +40,7 @@ const MoviesList: React.FC<MoviesListProps> = ({ category }) => {
     <>
       {movies?.map((movie: Movie) => (
         <motion.div
-          key={movie.id || movie.title}
+          key={movie.id || movie._id }
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
